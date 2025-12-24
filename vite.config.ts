@@ -1,41 +1,27 @@
-import { defineConfig } from 'vitest/config';
-import { playwright } from '@vitest/browser-playwright';
 import { sveltekit } from '@sveltejs/kit/vite';
+import { defineConfig } from 'vitest/config';
+import Icons from 'unplugin-icons/vite';
+import { SvelteKitPWA } from '@vite-pwa/sveltekit';
 
 export default defineConfig({
-	plugins: [sveltekit()],
+	plugins: [
+		sveltekit(),
+		Icons({
+			compiler: 'svelte',
+			autoInstall: true
+		}),
+		SvelteKitPWA({
+			registerType: 'autoUpdate',
+			manifest: false,
+			workbox: {
+				globPatterns: ['**/*.{js,css,html,ico,png,svg,json}']
+			}
+		})
+	],
 
 	test: {
-		expect: { requireAssertions: true },
-
-		projects: [
-			{
-				extends: './vite.config.ts',
-
-				test: {
-					name: 'client',
-
-					browser: {
-						enabled: true,
-						provider: playwright(),
-						instances: [{ browser: 'chromium', headless: true }]
-					},
-
-					include: ['src/**/*.svelte.{test,spec}.{js,ts}'],
-					exclude: ['src/lib/server/**']
-				}
-			},
-
-			{
-				extends: './vite.config.ts',
-
-				test: {
-					name: 'server',
-					environment: 'node',
-					include: ['src/**/*.{test,spec}.{js,ts}'],
-					exclude: ['src/**/*.svelte.{test,spec}.{js,ts}']
-				}
-			}
-		]
+		include: ['src/**/*.{test,spec}.{js,ts}'],
+		environment: 'jsdom',
+		globals: true
 	}
 });

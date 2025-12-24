@@ -1,8 +1,46 @@
 <!doctype html>
-<html lang="en">
+<html lang="ru">
 	<head>
 		<meta charset="utf-8" />
+		<link rel="icon" href="%sveltekit.assets%/favicon.png" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+		<!-- Подключение шрифта Roboto -->
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+		<script>
+			(function() {
+				try {
+					var stored = localStorage.getItem('easyflutter-settings');
+					if (stored) {
+						var s = JSON.parse(stored);
+						var root = document.documentElement;
+
+						// 1. Применяем тему сайта
+						if (s.theme) root.setAttribute('data-theme', s.theme);
+
+						// 2. Применяем типографику сайта
+						if (s.fontSize) root.style.setProperty('--base-font-size', s.fontSize + 'px');
+						if (s.letterSpacing) root.style.setProperty('--base-letter-spacing', s.letterSpacing + 'px');
+						if (s.lineHeight) root.style.setProperty('--base-line-height', s.lineHeight);
+
+						// 3. Применяем настройки кода
+						if (s.codeScheme) root.setAttribute('data-code-scheme', s.codeScheme);
+						// Поддержка атрибута темы (для совместимости)
+						if (s.codeTheme) root.setAttribute('data-code-theme', s.codeTheme);
+						
+						if (s.codeFontSize) root.style.setProperty('--code-font-size', s.codeFontSize + 'px');
+						if (s.codeLetterSpacing) root.style.setProperty('--code-letter-spacing', s.codeLetterSpacing + 'px');
+						if (s.codeLineHeight) root.style.setProperty('--code-line-height', s.codeLineHeight);
+					}
+				} catch (e) {
+					// Если ошибка парсинга, просто используем дефолтные стили CSS
+				}
+			})();
+		</script>
+
 		%sveltekit.head%
 	</head>
 	<body data-sveltekit-preload-data="hover">

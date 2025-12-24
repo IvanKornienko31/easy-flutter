@@ -1,0 +1,154 @@
+/* src/app.css */
+
+:root {
+	/* --- Шрифты --- */
+	--font-main: 'Roboto', sans-serif;
+
+	/* --- Базовые настройки типографики (будут меняться через JS) --- */
+	--base-font-size: 16px;
+	--base-line-height: 1.5;
+	--base-letter-spacing: normal;
+}
+
+html {
+	font-size: var(--base-font-size);
+	line-height: var(--base-line-height);
+	letter-spacing: var(--base-letter-spacing);
+}
+
+/* --- Светлая тема (по умолчанию) --- */
+:root,
+[data-theme='light'] {
+	--color-primary: #01579b;
+	--color-accent: #0288d1;
+	--color-bg: #f8fafc;
+	--color-surface: #ffffff;
+	--color-text: #000000;
+	--color-error: #b00020;
+	--color-text-secondary: rgba(0, 0, 0, 0.5);
+
+	--shadow-card: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+}
+
+/* --- Темная тема --- */
+[data-theme='dark'] {
+	--color-primary: #01579b;
+	--color-accent: #0288d1;
+	--color-bg: #0f172a;
+	--color-surface: #1e293b;
+	--color-text: #ffffff;
+	--color-error: #cf6679;
+	--color-text-secondary: rgba(255, 255, 255, 0.7);
+
+	--shadow-card: none;
+}
+
+/* --- Глобальный сброс и настройки --- */
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0;
+	font-family: var(--font-main);
+	background-color: var(--color-bg);
+	color: var(--color-text);
+
+	transition:
+		background-color 0.3s ease,
+		color 0.3s ease;
+}
+
+/* Ссылки */
+a {
+	color: var(--color-accent);
+	text-decoration: none;
+	transition: opacity 0.2s;
+}
+
+a:hover {
+	opacity: 0.8;
+}
+
+/* Кнопки (общий сброс) */
+button {
+	font-family: inherit;
+	cursor: pointer;
+}
+
+/* =========================================
+   Схемы подсветки кода
+   ========================================= */
+
+/* 1. MONOKAI (Default) */
+:root, [data-code-scheme="monokai"] {
+    --shiki-bg: #272822;
+    --shiki-fg: #F8F8F2;
+    --shiki-token-keyword: #F92672;
+    --shiki-token-string: #E6DB74;
+    --shiki-token-comment: #75715E;
+    --shiki-token-function: #A6E22E;
+    --shiki-token-constant: #AE81FF;
+    --shiki-token-parameter: #FD971F;
+    --shiki-border: #49483E;
+}
+
+/* 2. GITHUB LIGHT */
+[data-code-scheme="github-light"] {
+    --shiki-bg: #ffffff;
+    --shiki-fg: #24292e;
+    --shiki-token-keyword: #d73a49;
+    --shiki-token-string: #032f62;
+    --shiki-token-comment: #6a737d;
+    --shiki-token-function: #6f42c1;
+    --shiki-token-constant: #005cc5;
+    --shiki-token-parameter: #24292e;
+    --shiki-border: #e1e4e8;
+}
+
+/* 3. GITHUB DARK */
+[data-code-scheme="github-dark"] {
+    --shiki-bg: #24292e;
+    --shiki-fg: #e1e4e8;
+    --shiki-token-keyword: #f97583;
+    --shiki-token-string: #9ecbff;
+    --shiki-token-comment: #6a737d;
+    --shiki-token-function: #b392f0;
+    --shiki-token-constant: #79b8ff;
+    --shiki-token-parameter: #e1e4e8;
+    --shiki-border: #444d56;
+}
+
+/* 4. DRACULA */
+[data-code-scheme="dracula"] {
+    --shiki-bg: #282A36;
+    --shiki-fg: #F8F8F2;
+    --shiki-token-keyword: #FF79C6;
+    --shiki-token-string: #F1FA8C;
+    --shiki-token-comment: #6272A4;
+    --shiki-token-function: #50FA7B;
+    --shiki-token-constant: #BD93F9;
+    --shiki-token-parameter: #FFB86C;
+    --shiki-border: #44475A;
+}
+
+/* 5. NORD */
+[data-code-scheme="nord"] {
+    --shiki-bg: #2E3440;
+    --shiki-fg: #D8DEE9;
+    --shiki-token-keyword: #81A1C1;
+    --shiki-token-string: #A3BE8C;
+    --shiki-token-comment: #4C566A;
+    --shiki-token-function: #88C0D0;
+    --shiki-token-constant: #B48EAD;
+    --shiki-token-parameter: #D8DEE9;
+    --shiki-border: #434C5E;
+}
+
+/* Применение переменных Shiki к классам, которые генерирует тема 'css-variables' */
+.code-block-wrapper pre {
+    color: var(--shiki-fg) !important;
+    background-color: var(--shiki-bg) !important;
+}
