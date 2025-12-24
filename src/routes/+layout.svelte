@@ -3,9 +3,14 @@
 	import Header from '$lib/components/Header.svelte';
 	import SearchModal from '$lib/components/SearchModal.svelte';
 	import SettingsModal from '$lib/components/SettingsModal.svelte';
+	import Favicon from '$lib/assets/favicon.ico';
 
 	let { children, data } = $props();
 </script>
+
+<svelte:head>
+	<link rel="icon" href="{Favicon}">
+</svelte:head>
 
 <div class="app-container">
 	<Header />

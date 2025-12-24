@@ -1,0 +1,15 @@
+version: 2
+updates:
+  - package-ecosystem: 'npm' # Bun использует package.json, поэтому экосистема npm
+    directory: '/'
+    schedule:
+      interval: 'weekly'
+    open-pull-requests-limit: 10
+    ignore:
+      - dependency-name: '*'
+        update-types: ['version-update:semver-major'] # Игнорировать мажорные обновления, чтобы не сломать проект перед защитой
+
+  - package-ecosystem: 'github-actions'
+    directory: '/'
+    schedule:
+      interval: 'monthly'

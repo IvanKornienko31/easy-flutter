@@ -1,3 +1,4 @@
-# allow crawling everything by default
 User-agent: *
-Disallow:
+Allow: /
+
+Stiemap: https://easyflutter-course.vercel.app/sitemap.xml

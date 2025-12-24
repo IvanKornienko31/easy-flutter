@@ -1,0 +1,65 @@
+name: CI Pipeline
+
+on:
+  push:
+    branches: [ "main", "master" ]
+  pull_request:
+    branches: [ "main", "master" ]
+
+jobs:
+  quality-check:
+    name: 🛡️ Quality & Tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install Bun
+        uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: latest
+
+      - name: Install dependencies
+        run: bun install
+
+      - name: 🎨 Linting (ESLint & Prettier)
+        run: bun run lint
+
+      - name: 📐 Type Checking (Svelte-Check)
+        run: bun run check
+
+      - name: 🧪 Unit Testing (Vitest)
+        run: bun run test
+
+      - name: 🏗️ Build Verification
+        run: bun run build
+
+  lighthouse:
+    name: 💡 Lighthouse Audit
+    needs: quality-check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v1
+      
+      - name: Install dependencies
+        run: bun install
+
+      - name: Build App
+        run: bun run build
+
+      - name: Run Lighthouse CI
+        # Используем готовый экшен для аудита
+        uses: treosh/lighthouse-ci-action@v11
+        with:
+          # Запускаем локальный сервер на папке билда (Vercel adapter создает .vercel/output, но для тестов проще preview)
+          # Внимание: для локального теста Lighthouse в CI нам нужно, чтобы vite preview работал
+          urls: 'http://localhost:4173/'
+          startServerCommand: 'bun run preview'
+          # Ждем пока сервер поднимется
+          serverWaitTimeout: 10000 
+          uploadArtifacts: true 
+          temporaryPublicStorage: true
+          # Критерии успеха (можно настроить жестче)
+          budgetPath: .github/lighthouse-budget.json
