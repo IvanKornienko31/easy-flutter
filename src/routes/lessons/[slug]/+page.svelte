@@ -41,6 +41,10 @@
 <svelte:head>
 	<title>{data.post.title} — EasyFlutter</title>
 	<meta name="description" content={data.post.description} />
+
+  <meta property="og:title" content="{data.post.title} — EasyFlutter" />
+	<meta property="og:description" content={data.post.description} />
+	<meta property="og:type" content="article" />
 </svelte:head>
 
 <div class="lesson-page">

@@ -10,7 +10,13 @@
 	let { data } = $props();
 
 	// Состояние открытых глав.
-	let expandedChapters = $state(new Set<string>(data.chapters[0] ? [data.chapters[0].id] : []));
+	let expandedChapters = $state(new Set<string>);
+
+  $effect(() => {
+		if (data.chapters.length > 0) {
+			expandedChapters = new Set([data.chapters[0].id]);
+		}
+	});
 
 	// Функция переключения состояния главы
 	function toggleChapter(id: string) {

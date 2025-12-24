@@ -5,10 +5,18 @@
 	import SettingsModal from '$lib/components/SettingsModal.svelte';
 	import Favicon from '$lib/assets/favicon.ico';
 
+	import { dev } from '$app/environment';
+	import { inject } from '@vercel/analytics';
+
+	inject({ mode: dev ? 'development' : 'production' });
+
 	let { children, data } = $props();
 </script>
 
 <svelte:head>
+	<meta property="og:site_name" content="EasyFlutter" />
+	<meta property="og:locale" content="ru_RU" />
+	<meta property="og:type" content="website" />
 	<link rel="icon" href="{Favicon}">
 </svelte:head>
 

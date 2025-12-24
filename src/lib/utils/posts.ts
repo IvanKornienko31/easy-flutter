@@ -67,9 +67,13 @@ export const getPostBySlug = async (slug: string): Promise<Post | undefined> => 
  * Внутренняя функция: читает все файлы и парсит их
  */
 export const getAllPosts = async (): Promise<Post[]> => {
-	// eager: true — загружаем контент сразу
-	const modules = import.meta.glob('/src/content/**/*.md', { as: 'raw', eager: true });
-	const posts: Post[] = [];
+  const modules = import.meta.glob('/src/content/**/*.md', { 
+      query: '?raw', 
+      import: 'default', 
+      eager: true 
+  });
+
+  const posts: Post[] = [];
 
 	for (const path in modules) {
 		const fileContent = modules[path];
@@ -93,7 +97,6 @@ export const getAllPosts = async (): Promise<Post[]> => {
 				date: data.date,
 				description: data.description,
 				tags: data.tags || [],
-				// Если order есть в YAML - берем его, иначе - из имени файла
 				order: data.order ?? orderFromFile,
 				chapter: chapterFolder,
 				content: content
@@ -103,3 +106,8 @@ export const getAllPosts = async (): Promise<Post[]> => {
 
 	return posts;
 };
+
+export function extractOrderFromFilename(filename: string): number {
+	const orderMatch = filename.match(/^(\d+)-/);
+	return orderMatch ? parseInt(orderMatch[1], 10) : 999;
+}
