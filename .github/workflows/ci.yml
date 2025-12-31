@@ -49,6 +49,9 @@ jobs:
       - name: Build App
         run: bun run build
 
+      - name: Start Server
+        run: bun run preview &
+
       - name: Run Lighthouse CI
         # Используем готовый экшен для аудита
         uses: treosh/lighthouse-ci-action@v11
