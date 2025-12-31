@@ -147,7 +147,6 @@ button {
     --shiki-border: #434C5E;
 }
 
-/* Применение переменных Shiki к классам, которые генерирует тема 'css-variables' */
 .code-block-wrapper pre {
     color: var(--shiki-fg) !important;
     background-color: var(--shiki-bg) !important;
