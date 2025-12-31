@@ -7,7 +7,7 @@ import type { PageServerLoad } from './$types';
 
 // ОПРЕДЕЛЯЕМ ТЕМУ ВРУЧНУЮ (Hardcoded Theme)
 // Это исключает любые ошибки с поиском файлов module not found
-const cssVariablesTheme = {
+const cssVariablesTheme: object = {
 	name: 'css-variables',
 	type: 'dark', // Базовый тип, но цвета будут из CSS
 	colors: {
@@ -18,11 +18,7 @@ const cssVariablesTheme = {
 	},
 	tokenColors: [
 		{
-			scope: [
-				'comment',
-				'punctuation.definition.comment',
-				'string.comment'
-			],
+			scope: ['comment', 'punctuation.definition.comment', 'string.comment'],
 			settings: {
 				foreground: 'var(--shiki-token-comment)'
 			}
@@ -53,23 +49,13 @@ const cssVariablesTheme = {
 			}
 		},
 		{
-			scope: [
-				'entity.name.function',
-				'support.function',
-				'meta.function-call'
-			],
+			scope: ['entity.name.function', 'support.function', 'meta.function-call'],
 			settings: {
 				foreground: 'var(--shiki-token-function)'
 			}
 		},
 		{
-			scope: [
-				'keyword',
-				'storage',
-				'storage.type',
-				'entity.name.tag',
-				'punctuation.tag'
-			],
+			scope: ['keyword', 'storage', 'storage.type', 'entity.name.tag', 'punctuation.tag'],
 			settings: {
 				foreground: 'var(--shiki-token-keyword)'
 			}
@@ -120,7 +106,7 @@ export const load: PageServerLoad = async ({ params }) => {
 
 	renderer.code = ({ text, lang }) => {
 		const language = lang || 'text';
-		
+
 		const html = highlighter.codeToHtml(text, {
 			lang: language,
 			theme: 'css-variables' // Ссылаемся на имя нашей кастомной темы

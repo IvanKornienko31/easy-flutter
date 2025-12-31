@@ -2,6 +2,7 @@
 	import { onMount } from 'svelte';
 	import Fuse from 'fuse.js';
 	import { uiState } from '$lib/state/ui.svelte';
+	import { resolve } from '$app/paths';
 
 	// Иконки
 	import IconSearch from '~icons/mdi/magnify';
@@ -30,6 +31,7 @@
 
 	// Настройка Fuse.js
 	// Инициализируем один раз, так как searchIndex не меняется на лету
+	// svelte-ignore state_referenced_locally
 	const fuse = new Fuse(searchIndex, {
 		keys: ['title', 'tags', 'description'],
 		threshold: 0.4,
@@ -41,7 +43,9 @@
 	// 1. Точные совпадения
 	let exactMatches = $derived(
 		query
-			? searchIndex.filter((item) => item.title.toLowerCase().includes(query.toLowerCase()))
+			? searchIndex.filter((item: SearchItem) =>
+					item.title.toLowerCase().includes(query.toLowerCase())
+				)
 			: []
 	);
 
@@ -49,9 +53,9 @@
 	let fuzzyMatches = $derived.by(() => {
 		if (!query) return [];
 		const rawResults = fuse.search(query);
-		const exactSlugs = new Set(exactMatches.map((i) => i.slug));
+		const exactSlugs = new Set(exactMatches.map((i: SearchItem) => i.slug));
 
-		return rawResults.map((r) => r.item).filter((item) => !exactSlugs.has(item.slug));
+		return rawResults.map((r) => r.item as SearchItem).filter((item) => !exactSlugs.has(item.slug));
 	});
 
 	let hasResults = $derived(exactMatches.length > 0 || fuzzyMatches.length > 0);
@@ -117,10 +121,6 @@
 {#if uiState.isSearchOpen}
 	<!-- svelte-ignore a11y_click_events_have_key_events -->
 	<div class="backdrop" role="button" tabindex="0" onclick={() => uiState.closeSearch()}>
-		<!-- 
-			tabindex="-1" нужен для role="dialog", чтобы убрать ворнинг, 
-			но при этом мы не хотим, чтобы сам контейнер был в tab-порядке 
-		-->
 		<!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
 		<div class="modal-container" role="dialog" tabindex="-1" onclick={(e) => e.stopPropagation()}>
 			<!-- HEADER -->
@@ -172,9 +172,11 @@
 									Найден {exactMatches.length}
 									{exactMatches.length === 1 ? 'урок' : 'урока'} с подобным заголовком
 								</h3>
-								{#each exactMatches as post}
+								{#each exactMatches as post (post.slug)}
 									<a
-										href="/lessons/{post.slug}"
+										href={resolve(`/lessons/[slug]`, {
+											slug: post.slug
+										})}
 										class="result-item"
 										onclick={() => uiState.closeSearch()}
 									>
@@ -191,9 +193,11 @@
 									Найден {fuzzyMatches.length}
 									{fuzzyMatches.length === 1 ? 'урок' : 'урока'}, близких по теме
 								</h3>
-								{#each fuzzyMatches as post}
+								{#each fuzzyMatches as post (post.slug)}
 									<a
-										href="/lessons/{post.slug}"
+										href={resolve(`/lessons/[slug]`, {
+											slug: post.slug
+										})}
 										class="result-item"
 										onclick={() => uiState.closeSearch()}
 									>
@@ -248,14 +252,14 @@
 	}
 
 	/* --- SEARCH HEADER --- */
-  .search {
-    display: flex;
-    gap: 16px;
-  }
+	.search {
+		display: flex;
+		gap: 16px;
+	}
 
 	.search-header {
 		background-color: var(--modal-accent);
-    width: 100%;
+		width: 100%;
 		border-radius: 40px;
 		height: 48px;
 		padding: 0 24px;

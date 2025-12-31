@@ -6,7 +6,7 @@ This is a Flutter guide application with bunch of customizations (like changing 
 
 PWA support is available.
 
-*Note:* This project isn't ready yet and doesn't contain any useful articles.
+_Note:_ This project isn't ready yet and doesn't contain any useful articles.
 
 ## Installation
 

@@ -17,7 +17,7 @@
 	<meta property="og:site_name" content="EasyFlutter" />
 	<meta property="og:locale" content="ru_RU" />
 	<meta property="og:type" content="website" />
-	<link rel="icon" href="{Favicon}">
+	<link rel="icon" href={Favicon} />
 </svelte:head>
 
 <div class="app-container">
@@ -28,7 +28,9 @@
 	</main>
 
 	<!-- Временный Footer -->
-	<footer style="padding: 1rem; background: var(--color-primary); color: white; margin-top: auto; text-align:center">
+	<footer
+		style="padding: 1rem; background: var(--color-primary); color: white; margin-top: auto; text-align:center"
+	>
 		© 2025 EasyFlutter
 	</footer>
 

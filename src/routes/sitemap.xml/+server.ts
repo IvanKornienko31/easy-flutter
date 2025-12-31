@@ -1,7 +1,7 @@
 import { getAllPosts } from '$lib/utils/posts';
 
 // Укажи здесь свой будущий домен на Vercel (или оставь пока localhost для тестов, но лучше поменять перед сдачей)
-const SITE_URL = 'https://easyflutter-course.vercel.app'; 
+const SITE_URL = 'https://easyflutter-course.vercel.app';
 
 export async function GET() {
 	const posts = await getAllPosts();

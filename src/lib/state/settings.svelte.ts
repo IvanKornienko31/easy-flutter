@@ -83,7 +83,7 @@ class SettingsState {
 		root.style.setProperty('--code-line-height', `${this.codeLineHeight}`);
 
 		// Тема кода (для инверсии цветов в CSS)
-    root.setAttribute('data-code-scheme', this.codeScheme);
+		root.setAttribute('data-code-scheme', this.codeScheme);
 		root.setAttribute('data-code-theme', this.codeTheme);
 	}
 

@@ -66,9 +66,9 @@
 							<div class="toggle-track"></div>
 							<div class="toggle-thumb" class:is-dark={settings.theme === 'dark'}>
 								{#if settings.theme === 'light'}
-									<IconSun class="toggle-icon sun" />
+									<IconSun class="sun" />
 								{:else}
-									<IconMoon class="toggle-icon moon" />
+									<IconMoon class="moon" />
 								{/if}
 							</div>
 						</div>
@@ -161,9 +161,9 @@
 					<div class="control-row">
 						<span class="control-label">Цветовая схема</span>
 						<div class="custom-select-wrapper">
-              <IconArrowDown class="select-arrow" />
+							<IconArrowDown class="select-arrow" />
 							<select bind:value={settings.codeScheme} class="custom-select">
-								{#each codeThemes as theme}
+								{#each codeThemes as theme (theme.value)}
 									<option value={theme.value}>{theme.label}</option>
 								{/each}
 							</select>
@@ -250,11 +250,14 @@
 		--set-accent: var(--color-accent);
 		--set-text: var(--color-text);
 		--set-surface: var(--color-surface);
-		
+
 		--set-overlay: rgba(0, 0, 0, 0.5);
-		
+
 		position: fixed;
-		top: 0; left: 0; width: 100%; height: 100%;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
 		background-color: var(--set-overlay);
 		z-index: 1100;
 		display: flex;
@@ -273,7 +276,7 @@
 		flex-direction: column;
 		padding: 40px;
 		overflow-y: auto;
-		box-shadow: var(--shadow-modal, 0 10px 25px rgba(0,0,0,0.2));
+		box-shadow: var(--shadow-modal, 0 10px 25px rgba(0, 0, 0, 0.2));
 		transition: background-color 0.3s;
 	}
 
@@ -314,7 +317,9 @@
 		transition: opacity 0.2s;
 	}
 
-	.close-btn:hover { opacity: 0.9; }
+	.close-btn:hover {
+		opacity: 0.9;
+	}
 
 	.esc-hint {
 		font-size: 0.875rem;
@@ -372,7 +377,7 @@
 		border-radius: 20px;
 		position: relative;
 		cursor: pointer;
-		box-shadow: inset 0 4px 4px rgba(0,0,0,0.25);
+		box-shadow: inset 0 4px 4px rgba(0, 0, 0, 0.25);
 	}
 
 	.toggle-thumb {
@@ -386,7 +391,7 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		transition: transform 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+		transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 		color: white; /* Иконка внутри всегда белая */
 	}
 
@@ -394,27 +399,23 @@
 		transform: translateX(40px);
 	}
 
-	.toggle-icon {
-		font-size: 18px;
-	}
-
 	/* --- SELECT --- */
 	.custom-select-wrapper {
-    background-color: var(--set-accent);
-    border-radius: 12px;
-    padding-left: 16px;
+		background-color: var(--set-accent);
+		border-radius: 12px;
+		padding-left: 16px;
 		position: relative;
 		width: 200px;
-    display: flex;
-    align-items: center;
+		display: flex;
+		align-items: center;
 	}
-  
+
 	.custom-select {
-    width: 100%;
-    background-color: var(--set-accent);
+		width: 100%;
+		background-color: var(--set-accent);
 		appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
+		-webkit-appearance: none;
+		-moz-appearance: none;
 
 		color: var(--set-text);
 		border: none;
@@ -424,14 +425,14 @@
 
 		border-radius: 12px;
 
-    font-family: inherit;
+		font-family: inherit;
 		font-size: 1rem;
-    line-height: 1.5;
+		line-height: 1.5;
 
-    cursor: pointer;
+		cursor: pointer;
 
-    text-overflow: ellipsis;
-    white-space: nowrap;
+		text-overflow: ellipsis;
+		white-space: nowrap;
 	}
 
 	/* --- RANGE SLIDER --- */
@@ -448,10 +449,11 @@
 	}
 
 	.custom-range {
+		appearance: none;
 		-webkit-appearance: none;
 		width: 100%;
 		height: 6px;
-		background: #E2E8F0; /* Серый трек можно оставить или заменить на var(--color-border) */
+		background: #e2e8f0; /* Серый трек можно оставить или заменить на var(--color-border) */
 		border-radius: 3px;
 		outline: none;
 		margin: 16px 0;
@@ -467,7 +469,7 @@
 		background: var(--set-primary);
 		cursor: pointer;
 		border: 2px solid white;
-		box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 	}
 
 	.custom-range::-moz-range-thumb {
@@ -477,7 +479,7 @@
 		background: var(--set-primary);
 		cursor: pointer;
 		border: 2px solid white;
-		box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 	}
 
 	.custom-range::-moz-range-progress {
@@ -497,12 +499,18 @@
 	/* =========================================
 	   ADAPTIVE
 	   ========================================= */
-	
+
 	/* Tablet (< 1240px) */
 	@media (width < 1240px) {
-		.settings-title { font-size: 2rem; }
-		.group-title { font-size: 1.75rem; }
-		.control-label { font-size: 1.5rem; }
+		.settings-title {
+			font-size: 2rem;
+		}
+		.group-title {
+			font-size: 1.75rem;
+		}
+		.control-label {
+			font-size: 1.5rem;
+		}
 	}
 
 	/* Mobile (< 600px) */
@@ -516,14 +524,20 @@
 			height: auto;
 		}
 
-		.settings-title { font-size: 1.75rem; }
-		.group-title { font-size: 1.5rem; }
-		.control-label { font-size: 1.25rem; }
-		
+		.settings-title {
+			font-size: 1.75rem;
+		}
+		.group-title {
+			font-size: 1.5rem;
+		}
+		.control-label {
+			font-size: 1.25rem;
+		}
+
 		.control-row {
 			margin-bottom: 20px;
 		}
-		
+
 		.divider {
 			margin: 0 -24px; /* Коррекция под новый паддинг */
 		}

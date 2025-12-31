@@ -4,6 +4,7 @@
 	import FlutterLogo from '$lib/assets/flutter.svg';
 	import DartLogo from '$lib/assets/dart.svg';
 	import { uiState } from '$lib/state/ui.svelte.js';
+	import { resolve } from '$app/paths';
 
 	let { data } = $props();
 </script>
@@ -23,7 +24,7 @@
 			</p>
 		</div>
 
-		<a href="/lessons/what-is-flutter" class="btn btn-primary">
+		<a href={resolve('/lessons/what-is-flutter')} class="btn btn-primary">
 			<IconSchool style="font-size: 1.5rem;" />
 			<span>Начать освоение!</span>
 		</a>
@@ -41,7 +42,7 @@
 		<h2 class="section-title">Популярные уроки</h2>
 
 		<div class="cards-grid">
-			{#each data.popularLessons as lesson}
+			{#each data.popularLessons as lesson (lesson.slug)}
 				<article class="lesson-card">
 					<h3 class="card-title">{lesson.title}</h3>
 					<p class="card-text">
@@ -50,7 +51,12 @@
 							: lesson.description}
 					</p>
 
-					<a href="/lessons/{lesson.slug}" class="btn btn-secondary">
+					<a
+						href={resolve('/lessons/[slug]', {
+							slug: lesson.slug
+						})}
+						class="btn btn-secondary"
+					>
 						<IconSchool style="font-size: 1.25rem;" />
 						<span>Читать</span>
 					</a>

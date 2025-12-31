@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { resolve } from '$app/paths';
+	import { SvelteSet } from 'svelte/reactivity';
 	import { slide } from 'svelte/transition'; // Анимация сворачивания
 
 	// Иконки (Outline версия для Book Ribbon, как просил, и стрелки)
@@ -10,9 +12,9 @@
 	let { data } = $props();
 
 	// Состояние открытых глав.
-	let expandedChapters = $state(new Set<string>);
+	let expandedChapters = $state(new Set<string>());
 
-  $effect(() => {
+	$effect(() => {
 		if (data.chapters.length > 0) {
 			expandedChapters = new Set([data.chapters[0].id]);
 		}
@@ -20,7 +22,7 @@
 
 	// Функция переключения состояния главы
 	function toggleChapter(id: string) {
-		const newSet = new Set(expandedChapters);
+		const newSet = new SvelteSet(expandedChapters);
 		if (newSet.has(id)) {
 			newSet.delete(id);
 		} else {
@@ -62,8 +64,13 @@
 				<!-- Список уроков (Слайдер) -->
 				{#if expandedChapters.has(chapter.id)}
 					<div class="chapter-content" transition:slide={{ duration: 300 }}>
-						{#each chapter.posts as post}
-							<a href="/lessons/{post.slug}" class="lesson-link">
+						{#each chapter.posts as post (post.slug)}
+							<a
+								href={resolve('/lessons/[slug]', {
+									slug: post.slug
+								})}
+								class="lesson-link"
+							>
 								<span class="lesson-icon">
 									<IconBook />
 								</span>
@@ -132,7 +139,7 @@
 
 	.chapter-header:hover {
 		opacity: 0.8;
-    color: var(--color-primary)
+		color: var(--color-primary);
 	}
 
 	.chapter-icon {
@@ -222,7 +229,7 @@
 		.page-title {
 			font-size: 2rem;
 			line-height: 1.1;
-      padding-top: 64px;
+			padding-top: 64px;
 		}
 
 		.page-subtitle {
@@ -249,7 +256,7 @@
 
 		.lesson-link {
 			padding-block: 16px;
-      padding-left: 9px;
+			padding-left: 9px;
 			gap: 12px;
 		}
 

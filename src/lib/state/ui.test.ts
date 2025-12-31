@@ -3,7 +3,6 @@ import { uiState } from './ui.svelte';
 
 // Vitest позволяет тестировать JS/TS логику очень просто
 describe('UI State Logic', () => {
-	
 	// Перед каждым тестом сбрасываем состояние
 	beforeEach(() => {
 		uiState.closeSearch();

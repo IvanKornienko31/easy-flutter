@@ -3,15 +3,15 @@
 	import IconSearch from '~icons/mdi/magnify';
 	import IconSettings from '~icons/mdi/tune'; // Иконка настроек
 	import IconList from '~icons/mdi/format-list-bulleted'; // Рубрикатор
-	import IconClose from '~icons/mdi/close'; // Крестик (на всякий случай)
 	import { uiState } from '$lib/state/ui.svelte';
+	import { resolve } from '$app/paths';
 </script>
 
 <header class="header">
 	<div class="header-container">
 		<!-- 1. ЛЕВАЯ ЧАСТЬ: Логотип -->
 		<div class="header-left">
-			<a href="/" class="logo"> EasyFlutter </a>
+			<a href={resolve('/')} class="logo"> EasyFlutter </a>
 		</div>
 
 		<!-- 2. ЦЕНТРАЛЬНАЯ ЧАСТЬ: Поиск (Абсолютное центрирование) -->
@@ -33,12 +33,16 @@
 			</button>
 
 			<!-- Настройки -->
-			<button class="icon-btn" aria-label="Настройки интерфейса" onclick={() => uiState.openSettings()}>
+			<button
+				class="icon-btn"
+				aria-label="Настройки интерфейса"
+				onclick={() => uiState.openSettings()}
+			>
 				<IconSettings />
 			</button>
 
 			<!-- Рубрикатор -->
-			<a href="/rubricator" class="rubricator-btn" aria-label="Рубрикатор">
+			<a href={resolve('/rubricator')} class="rubricator-btn" aria-label="Рубрикатор">
 				<span class="btn-icon"><IconList /></span>
 				<span class="desktop-text">Рубрикатор</span>
 			</a>

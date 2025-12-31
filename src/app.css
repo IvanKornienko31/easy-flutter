@@ -83,71 +83,72 @@ button {
    ========================================= */
 
 /* 1. MONOKAI (Default) */
-:root, [data-code-scheme="monokai"] {
-    --shiki-bg: #272822;
-    --shiki-fg: #F8F8F2;
-    --shiki-token-keyword: #F92672;
-    --shiki-token-string: #E6DB74;
-    --shiki-token-comment: #75715E;
-    --shiki-token-function: #A6E22E;
-    --shiki-token-constant: #AE81FF;
-    --shiki-token-parameter: #FD971F;
-    --shiki-border: #49483E;
+:root,
+[data-code-scheme='monokai'] {
+	--shiki-bg: #272822;
+	--shiki-fg: #f8f8f2;
+	--shiki-token-keyword: #f92672;
+	--shiki-token-string: #e6db74;
+	--shiki-token-comment: #75715e;
+	--shiki-token-function: #a6e22e;
+	--shiki-token-constant: #ae81ff;
+	--shiki-token-parameter: #fd971f;
+	--shiki-border: #49483e;
 }
 
 /* 2. GITHUB LIGHT */
-[data-code-scheme="github-light"] {
-    --shiki-bg: #ffffff;
-    --shiki-fg: #24292e;
-    --shiki-token-keyword: #d73a49;
-    --shiki-token-string: #032f62;
-    --shiki-token-comment: #6a737d;
-    --shiki-token-function: #6f42c1;
-    --shiki-token-constant: #005cc5;
-    --shiki-token-parameter: #24292e;
-    --shiki-border: #e1e4e8;
+[data-code-scheme='github-light'] {
+	--shiki-bg: #ffffff;
+	--shiki-fg: #24292e;
+	--shiki-token-keyword: #d73a49;
+	--shiki-token-string: #032f62;
+	--shiki-token-comment: #6a737d;
+	--shiki-token-function: #6f42c1;
+	--shiki-token-constant: #005cc5;
+	--shiki-token-parameter: #24292e;
+	--shiki-border: #e1e4e8;
 }
 
 /* 3. GITHUB DARK */
-[data-code-scheme="github-dark"] {
-    --shiki-bg: #24292e;
-    --shiki-fg: #e1e4e8;
-    --shiki-token-keyword: #f97583;
-    --shiki-token-string: #9ecbff;
-    --shiki-token-comment: #6a737d;
-    --shiki-token-function: #b392f0;
-    --shiki-token-constant: #79b8ff;
-    --shiki-token-parameter: #e1e4e8;
-    --shiki-border: #444d56;
+[data-code-scheme='github-dark'] {
+	--shiki-bg: #24292e;
+	--shiki-fg: #e1e4e8;
+	--shiki-token-keyword: #f97583;
+	--shiki-token-string: #9ecbff;
+	--shiki-token-comment: #6a737d;
+	--shiki-token-function: #b392f0;
+	--shiki-token-constant: #79b8ff;
+	--shiki-token-parameter: #e1e4e8;
+	--shiki-border: #444d56;
 }
 
 /* 4. DRACULA */
-[data-code-scheme="dracula"] {
-    --shiki-bg: #282A36;
-    --shiki-fg: #F8F8F2;
-    --shiki-token-keyword: #FF79C6;
-    --shiki-token-string: #F1FA8C;
-    --shiki-token-comment: #6272A4;
-    --shiki-token-function: #50FA7B;
-    --shiki-token-constant: #BD93F9;
-    --shiki-token-parameter: #FFB86C;
-    --shiki-border: #44475A;
+[data-code-scheme='dracula'] {
+	--shiki-bg: #282a36;
+	--shiki-fg: #f8f8f2;
+	--shiki-token-keyword: #ff79c6;
+	--shiki-token-string: #f1fa8c;
+	--shiki-token-comment: #6272a4;
+	--shiki-token-function: #50fa7b;
+	--shiki-token-constant: #bd93f9;
+	--shiki-token-parameter: #ffb86c;
+	--shiki-border: #44475a;
 }
 
 /* 5. NORD */
-[data-code-scheme="nord"] {
-    --shiki-bg: #2E3440;
-    --shiki-fg: #D8DEE9;
-    --shiki-token-keyword: #81A1C1;
-    --shiki-token-string: #A3BE8C;
-    --shiki-token-comment: #4C566A;
-    --shiki-token-function: #88C0D0;
-    --shiki-token-constant: #B48EAD;
-    --shiki-token-parameter: #D8DEE9;
-    --shiki-border: #434C5E;
+[data-code-scheme='nord'] {
+	--shiki-bg: #2e3440;
+	--shiki-fg: #d8dee9;
+	--shiki-token-keyword: #81a1c1;
+	--shiki-token-string: #a3be8c;
+	--shiki-token-comment: #4c566a;
+	--shiki-token-function: #88c0d0;
+	--shiki-token-constant: #b48ead;
+	--shiki-token-parameter: #d8dee9;
+	--shiki-border: #434c5e;
 }
 
 .code-block-wrapper pre {
-    color: var(--shiki-fg) !important;
-    background-color: var(--shiki-bg) !important;
+	color: var(--shiki-fg) !important;
+	background-color: var(--shiki-bg) !important;
 }

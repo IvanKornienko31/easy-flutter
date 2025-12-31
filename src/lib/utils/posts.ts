@@ -67,16 +67,16 @@ export const getPostBySlug = async (slug: string): Promise<Post | undefined> => 
  * Внутренняя функция: читает все файлы и парсит их
  */
 export const getAllPosts = async (): Promise<Post[]> => {
-  const modules = import.meta.glob('/src/content/**/*.md', { 
-      query: '?raw', 
-      import: 'default', 
-      eager: true 
-  });
+	const modules = import.meta.glob('/src/content/**/*.md', {
+		query: '?raw',
+		import: 'default',
+		eager: true
+	});
 
-  const posts: Post[] = [];
+	const posts: Post[] = [];
 
 	for (const path in modules) {
-		const fileContent = modules[path];
+		const fileContent = modules[path] as string;
 		const { data, content } = matter(fileContent);
 
 		// 1. Разбираем путь к файлу
