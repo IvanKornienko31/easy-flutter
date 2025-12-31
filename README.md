@@ -1,38 +1,18 @@
-# sv
+# Easy Flutter App
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+## About
 
-## Creating a project
+This is a Flutter guide application with bunch of customizations (like changing size of font, letter spacing etc.) for the entire app and code blocks separately from each other.
 
-If you're seeing this, you've probably already done this step. Congrats!
+PWA support is available.
 
-```sh
-# create a new project in the current directory
-npx sv create
+*Note:* This project isn't ready yet and doesn't contain any useful articles.
 
-# create a new project in my-app
-npx sv create my-app
-```
+## Installation
 
-## Developing
+1. Clone this repo with `git clone`
+2. Install Bun from [official page](https://bun.com/)
+3. Execute `bun install` from the project root
+4. Run `bun run dev` and open localhost link from the command result
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```sh
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
-
-## Building
-
-To create a production version of your app:
-
-```sh
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+Enjoy =)
