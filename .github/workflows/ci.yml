@@ -54,7 +54,7 @@ jobs:
 
       - name: Run Lighthouse CI
         # Используем готовый экшен для аудита
-        uses: treosh/lighthouse-ci-action@v11
+        uses: treosh/lighthouse-ci-action@v12
         with:
           # Запускаем локальный сервер на папке билда (Vercel adapter создает .vercel/output, но для тестов проще preview)
           # Внимание: для локального теста Lighthouse в CI нам нужно, чтобы vite preview работал
